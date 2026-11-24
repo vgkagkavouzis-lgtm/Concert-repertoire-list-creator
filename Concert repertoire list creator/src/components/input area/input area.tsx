@@ -1,21 +1,37 @@
-import { useState } from "react"
+import { useState, type ChangeEvent } from "react"
 
-export function Input ({id, labelText, value, changeFunction}) {
+type InputIdentifier = 'title' | 'keySignature' ;
+
+type InputProps = {
+    id: string;
+    labelText: string;
+    value: string;
+    changeFunction: (e: ChangeEvent<HTMLInputElement>) => void;
+    required?: boolean;
+    type?: string;
+}
+
+type FormValues = {
+    title: string;
+    keySignature: string;
+}
+
+const emptyForm = {title: '', keySignature: ''};
+
+export function Input ({id, labelText, changeFunction, value, type = 'text', ...props}: InputProps) {
     return(
         <div>
             <label htmlFor={id}>{labelText}</label>
-            <input id={id} value={value} type="text" required onChange={changeFunction}/>  
+            <input id={id} value={value} type={type} onChange={changeFunction} {...props}/>  
         </div>
     )
     
 }
 
 export function InputArea () {
-    const [mainInput, setMainInput] = useState({title: '', 
-                                                key: ''
-    });
+    const [mainInput, setMainInput] = useState<FormValues>(emptyForm);
 
-    function handleChange (inputIdentifier, newValue) {
+    function handleChange (inputIdentifier: InputIdentifier, newValue: string) {
         setMainInput (prev => {
             return {
                 ...prev,
@@ -23,9 +39,26 @@ export function InputArea () {
             }
         })
     }
+
+    function handleFormSubmit(e: FormEvent<HTMLFormElement>) {
+        e.preventDefault();
+        console.log(mainInput.title, mainInput.keySignature);
+        setMainInput(emptyForm);
+    }
+
     return (
         <div>
-            <Input id='titleInput' value={mainInput.title} labelText='Title' changeFunction={(e) => handleChange ('title', e.target.value)}/>
+            <form onSubmit={handleFormSubmit}>
+                <Input  id='titleInput' 
+                        labelText='Title' 
+                        value={mainInput.title}     
+                        changeFunction={(e) => {handleChange ('title', e.target.value)}}/>
+                <Input  id='keySignature' 
+                        labelText='Key signature' 
+                        value={mainInput.keySignature}     
+                        changeFunction={(e) => {handleChange ('keySignature', e.target.value);}}/>
+                <button type='submit'></button>
+            </form>
         </div>
     )
 }
