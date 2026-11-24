@@ -1,20 +1,5 @@
-import { useState, type ChangeEvent } from "react"
-
-type InputIdentifier = 'title' | 'keySignature' ;
-
-type InputProps = {
-    id: string;
-    labelText: string;
-    value: string;
-    changeFunction: (e: ChangeEvent<HTMLInputElement>) => void;
-    required?: boolean;
-    type?: string;
-}
-
-type FormValues = {
-    title: string;
-    keySignature: string;
-}
+import { useState, type SubmitEvent } from "react";
+import { type InputIdentifier, type InputProps, type FormValues } from "../../../types/types";
 
 const emptyForm = {title: '', keySignature: ''};
 
@@ -28,8 +13,9 @@ export function Input ({id, labelText, changeFunction, value, type = 'text', ...
     
 }
 
-export function InputArea () {
-    const [mainInput, setMainInput] = useState<FormValues>(emptyForm);
+export function InputArea (props: { onAddSong: (song: FormValues) => void}) {
+
+const [mainInput, setMainInput] = useState<FormValues>(emptyForm);
 
     function handleChange (inputIdentifier: InputIdentifier, newValue: string) {
         setMainInput (prev => {
@@ -40,9 +26,9 @@ export function InputArea () {
         })
     }
 
-    function handleFormSubmit(e: FormEvent<HTMLFormElement>) {
+    function handleFormSubmit(e: SubmitEvent<HTMLFormElement>) {
         e.preventDefault();
-        console.log(mainInput.title, mainInput.keySignature);
+        props.onAddSong(mainInput);
         setMainInput(emptyForm);
     }
 
@@ -57,7 +43,7 @@ export function InputArea () {
                         labelText='Key signature' 
                         value={mainInput.keySignature}     
                         changeFunction={(e) => {handleChange ('keySignature', e.target.value);}}/>
-                <button type='submit'></button>
+                <button type='submit'>Add</button>
             </form>
         </div>
     )
