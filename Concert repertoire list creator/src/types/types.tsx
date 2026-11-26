@@ -16,4 +16,10 @@ export type FormValues = {
     keySignature: string;
 }
 
+export type ListFormat = {
+    id: string;
+    title: string;
+    keySignature: string;
+}
+
 export type Song = FormValues;
