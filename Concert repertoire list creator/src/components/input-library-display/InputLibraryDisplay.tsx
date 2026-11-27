@@ -4,6 +4,7 @@ import { SongLibrary } from "./song library/SongLibrary"
 import { type FormValues, type ListFormat } from "../../types/types"
 import { Playlist } from "./Playlist/Playlist"
 import { v4 as uuidv4 } from 'uuid';
+import Styles from './InputLibraryDisplay.module.css'
 
 
 export function InputLibraryDisplay () {
@@ -31,15 +32,17 @@ export function InputLibraryDisplay () {
     }
 
     return (
-        <>
-            <InputArea onAddSong={addToLibrary}/>
+        <div className={Styles['container']}>
+            <div>
+                <InputArea onAddSong={addToLibrary}/>
+                <Playlist 
+                    list={playlist} 
+                    deleteFromPlaylist={(song) => deleteFromList({list: playlist, song})}/>
+            </div>
             <SongLibrary 
                 library={library} 
                 addToPlaylist={addToPlaylist} 
                 deleteFromLibrary={(song) => deleteFromList({list: library, song})}/>
-            <Playlist 
-                list={playlist} 
-                deleteFromPlaylist={(song) => deleteFromList({list: playlist, song})}/>
-        </>
+        </div>
     )
 }

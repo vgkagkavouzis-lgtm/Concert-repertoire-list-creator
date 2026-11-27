@@ -5,10 +5,10 @@
     display: flex;
     justify-content: center;
     flex-direction: column;
-    height: 10em;
+    height: 12em;
     width: var(--left-column-width);
     background-color: var(--background-color-main-white);
-    padding: 1.3rem 1rem 1rem 1rem;
+    padding: 2rem 1rem 1rem 1rem;
     border-radius: var(--border-radius-larger-sections);
     margin: 1rem 0;
 }
@@ -51,7 +51,7 @@
     border-color: var(--border-color-main);
     border-radius: var(--border-radius-main);
     width: 100%;
-    height: 1.4rem;
+    height: 2.2rem;
     padding: .3rem;
     top: 0;
     left: 0;

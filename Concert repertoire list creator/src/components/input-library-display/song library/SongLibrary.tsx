@@ -9,12 +9,15 @@ function LibraryRow ({song, addToPlaylist, deleteFromLibrary}: {
     
     return(
         <tr>
-            <td className={Styles['title-cell']}>{`${song.title} - `}</td>
-            <td className={Styles['keyS-cell']}>{song.keySignature}</td>
-            <td>
+            <td>{song.title}</td>
+            <td>{song.keySignature}
                 <div className={Styles['buttons-div']}>
-                    <button onClick={() => addToPlaylist(song)}>+</button>
-                    <button onClick={() => deleteFromLibrary(song)}>x</button>
+                    <button onClick={() => addToPlaylist(song)}>
+                        <img src="images/add.svg" alt="add button" />
+                    </button>
+                    <button onClick={() => deleteFromLibrary(song)}>
+                        <img src="images/delete.svg" alt="delete button" />
+                    </button>
                 </div>
             </td>
         </tr>
@@ -31,17 +34,26 @@ export function SongLibrary (props: {
     return(
         <div className={Styles['table-container']}>
             <div className={Styles['table-title']}>
-            <h3>Song Library</h3>
+                <h3>Song Library</h3>
             </div>
-            <table>
-                <tbody>
-                    {props.library.map(item => 
-                        <LibraryRow key={item.id} 
-                        song={item} 
-                        addToPlaylist={props.addToPlaylist} 
-                        deleteFromLibrary={props.deleteFromLibrary}/>)}
-                </tbody>
-            </table>
+            <div className={Styles['table-and-button-container']}>
+                <table>
+                    <thead>
+                        <tr>
+                            <td>Song Name</td>
+                            <td>Key Signature</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {props.library.map(item => 
+                            <LibraryRow key={item.id} 
+                            song={item} 
+                            addToPlaylist={props.addToPlaylist} 
+                            deleteFromLibrary={props.deleteFromLibrary}/>)}
+                    </tbody>
+                </table>
+                <div className={Styles['buttons-visual-container']}></div>
+            </div>
         </div>
     )
 }

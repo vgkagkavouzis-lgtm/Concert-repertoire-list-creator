@@ -1,49 +1,110 @@
+.table-title {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding-bottom: 1.5rem;
+    width: 1rem;
+    height: 4rem;
+    width: 100%;
+}
+
 .table-container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 10em;
+    min-height: 10rem;
     width: var(--left-column-width);
     background-color: var(--background-color-main-white);
     padding: 1.3rem 1rem 1rem 1rem;
     border-radius: var(--border-radius-larger-sections);
-
-    & table {
-        /* border-spacing: 0; */
-        width: 100%;
-        border-collapse: collapse;
-    }
-
-    & td {
-        padding: .4rem;
-            border: 1px solid var(--border-color-main);
-
-    }
+    margin: 1rem 0 1rem 1rem;
 }
 
-
-.table-title {
+.table-and-button-container {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 1rem;
-    height: 2rem;
-    background-color: #f9fafb;
+    flex-direction: row;
     width: 100%;
-    border: 1px solid var(--border-color-main);
-    border-bottom: none;
-    border-top-left-radius: var(--border-radius-larger-sections);
-    border-top-right-radius: var(--border-radius-larger-sections);
-    
 }
+
+.buttons-visual-container {
+    width: 3rem;
+}
+
+
+/* Buttons */
 
 .buttons-div {
     display: flex;
     justify-content: space-around;
     align-items: center;
 
-    & buttons {
+    & button {
+        position: absolute;
+        width: 1.2rem;
+        height: 1.1rem;
         background-color: var(--title-color-fill);
+        background-color: var(--background-color-main-white);
+        border: none;
+        border-radius: var(--border-radius-main);
+    }
+    & img {
+        padding-top: .1rem;
+        width: 1rem;
+        height: 1rem;
+        background-color: var(--background-color-main-white);
+    }
+    & button:first-child {
+        top: .75rem;
+        left: 8.3rem;
+    }
+    & button:last-child {
+        top: .75rem;
+        left: 9.7rem;
     }
 } 
+
+/* Table */
+
+table{
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+thead td{
+  font-weight: 500;
+  background-color: var(--title-color-fill);
+  border-top: 1px solid var(--border-color-main);
+}
+
+/* these rules go bellow the thead */
+table thead tr:first-child td:first-child {
+  border-top-left-radius: var(--border-radius-larger-sections);
+  
+}
+
+
+table thead tr:first-child td:last-child {
+  border-top-right-radius: var(--border-radius-larger-sections);
+}
+
+td {
+  font-size: normal;
+  font-weight: 200;
+  padding: .6rem;
+  border-right: 1px solid var(--border-color-main);
+  border-bottom: 1px solid var(--border-color-main);
+}
+
+tr td:first-child {
+  border-left: 1px solid var(--border-color-main);
+  max-width: auto;;
+}
+
+/* for the buttons */
+tr td:last-child {
+    position: relative;
+    max-width: 3rem;
+}
+
 
