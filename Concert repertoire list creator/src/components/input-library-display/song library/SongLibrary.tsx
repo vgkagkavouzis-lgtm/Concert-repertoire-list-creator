@@ -1,15 +1,23 @@
 import { type FormValues } from "../../../types/types"
+import Styles from './songLibrary.module.css'
 
-function LibraryList ({song, addToPlaylist, deleteFromLibrary}: {
+
+function LibraryRow ({song, addToPlaylist, deleteFromLibrary}: {
     song: FormValues, 
     addToPlaylist: (song: FormValues) => void, 
     deleteFromLibrary: (song: FormValues) => void}) {
     
     return(
-        <li><span>{`${song.title} - ${song.keySignature} `}</span>
-            <button onClick={() => addToPlaylist(song)}>Add to program</button>
-            <button onClick={() => deleteFromLibrary(song)}>Delete</button>
-        </li>
+        <tr>
+            <td className={Styles['title-cell']}>{`${song.title} - `}</td>
+            <td className={Styles['keyS-cell']}>{song.keySignature}</td>
+            <td>
+                <div className={Styles['buttons-div']}>
+                    <button onClick={() => addToPlaylist(song)}>+</button>
+                    <button onClick={() => deleteFromLibrary(song)}>x</button>
+                </div>
+            </td>
+        </tr>
     )
 }
 
@@ -18,16 +26,22 @@ export function SongLibrary (props: {
     addToPlaylist: (song: FormValues) => void, 
     deleteFromLibrary: (song: FormValues) => void}) {
     
+    
+
     return(
-        <div>
-            <h4>Song Library</h4>
-            <ul>
-                {props.library.map(item => 
-                    <LibraryList key={item.title} 
-                    song={item} 
-                    addToPlaylist={props.addToPlaylist} 
-                    deleteFromLibrary={props.deleteFromLibrary}/>)}
-            </ul>
+        <div className={Styles['table-container']}>
+            <div className={Styles['table-title']}>
+            <h3>Song Library</h3>
+            </div>
+            <table>
+                <tbody>
+                    {props.library.map(item => 
+                        <LibraryRow key={item.id} 
+                        song={item} 
+                        addToPlaylist={props.addToPlaylist} 
+                        deleteFromLibrary={props.deleteFromLibrary}/>)}
+                </tbody>
+            </table>
         </div>
     )
 }

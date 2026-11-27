@@ -12,6 +12,7 @@ export type InputProps = {
 }
 
 export type FormValues = {
+    id?: string;
     title: string;
     keySignature: string;
 }

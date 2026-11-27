@@ -1,0 +1,64 @@
+
+
+.inputs-container-form {
+
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    height: 10em;
+    width: var(--left-column-width);
+    background-color: var(--background-color-main-white);
+    padding: 1.3rem 1rem 1rem 1rem;
+    border-radius: var(--border-radius-larger-sections);
+    margin: 1rem 0;
+}
+
+.inputs-container-form button {
+    width: 4rem;
+    border: var(--border-main) ;
+    border-color: transparent;
+    border-radius: var(--border-radius-larger-sections);
+    background-color: var(--focus-color);
+    color: var(--background-color-main-white);
+    padding: .5rem 1rem;
+
+    &:focus-visible {
+        outline:1px solid var(--focus-color-light);
+    }
+}
+
+.parent-label-input-container {
+    position: relative;
+    height: 10rem;
+        max-width: 100%;
+
+}
+
+.parent-label-input-container label {
+    position: absolute;
+    font-size: .7rem;
+    top: -.45rem;
+    left: 0.3rem;
+    padding: 0 .3rem;
+    background-color: var(--background-color-main-white);
+    color:rgb(168, 168, 168);
+    z-index: 2;
+}
+
+.parent-label-input-container input {
+    position: absolute;
+    border: var(--border-main) ;
+    border-color: var(--border-color-main);
+    border-radius: var(--border-radius-main);
+    width: 100%;
+    height: 1.4rem;
+    padding: .3rem;
+    top: 0;
+    left: 0;
+
+    &:focus-visible {
+        outline:1px solid var(--focus-color);
+    }
+
+
+}
